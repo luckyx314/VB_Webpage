@@ -16,10 +16,34 @@
 // }
 
 
+// CURSOR EVENTS
+// let cursor = document.getElementById("cursor");
+//
+// document.addEventListener("mousemove", (e) => {
+//   followMouse(e)
+// })
+//
+//
+// const followMouse = (e) => {
+//   let x = e.clientX;
+//   let y = e.clientY;
+//
+//   cursor.style.left = x + "px";
+//   cursor.style.top = y + "px";
+// }
+
+
+
 
 const floatRightElements = document.querySelectorAll(".float-right");
 const fadedElements = document.querySelectorAll(".fade");
 const progbar = document.querySelectorAll(".progbar");
+const magicBtn = document.getElementById("magic-btn");
+const contact1 = document.querySelectorAll(".contact1")
+const contact2 = document.querySelectorAll(".contact2")
+const mapContainer = document.getElementById("map-container");
+
+
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
@@ -53,20 +77,23 @@ const hideNavOnScroll = () => {
   lastScrollY = window.scrollY;
 }
 
-
-
-// CURSOR EVENTS
-// let cursor = document.getElementById("cursor");
-//
-// document.addEventListener("mousemove", (e) => {
-//   followMouse(e)
-// })
-//
-//
-// const followMouse = (e) => {
-//   let x = e.clientX;
-//   let y = e.clientY;
-//
-//   cursor.style.left = x + "px";
-//   cursor.style.top = y + "px";
-// }
+let isClicked = true;
+magicBtn.addEventListener("click", () => {
+  if (isClicked) {
+    contact1.forEach(div => {
+      div.classList.add("contact-hide");
+    })
+    contact2.forEach(div => {
+      div.classList.add("contact-show");
+    })
+    isClicked = false;
+  } else {
+    contact1.forEach(div => {
+      div.classList.remove("contact-hide");
+    })
+    contact2.forEach(div => {
+      div.classList.remove("contact-show");
+    })
+    isClicked = true;
+  }
+})
